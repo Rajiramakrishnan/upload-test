@@ -15,6 +15,8 @@ const addstudent = async (req, res) => {
     const hashedStudentName = await bcrypt.hash(StudentName, saltRound);
 
     console.log("hash", hashedStudentName);
+
+    console.log('check',  imgPath.filename)
     const student = new StudentModel({
       StudentName: hashedStudentName,
       AdmissionNo,
@@ -24,7 +26,7 @@ const addstudent = async (req, res) => {
     await student.save();
     return res.status(201).json({ mesage: "Student Record Added" });
   } catch (error) {
-    return res.status(500).json({ message: "server error" });
+    return res.status(500).json({ message: "server error", error: error.message });
   }
 };
 const findStudent = async (req, res) => {

@@ -11,6 +11,7 @@ const cors = require('cors');
 
 app.use(cors())
 app.use(express.json());
+console.log('dir nam', __dirname)
 
 app.use(express.static(`${__dirname}/upload`))
 
